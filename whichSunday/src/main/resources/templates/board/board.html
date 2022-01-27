@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2 th:text="#{page.board}"></h2>
+    </div>
+    <div>
+        <label for="id" th:text="#{label.board.no}"></label>
+        <input type="text" th:field="${board.id}" class="form-control"
+               readonly>
+    </div>
+    <div>
+        <label for="title" th:text="#{label.board.title}"></label>
+        <input type="text" th:field="${board.title}" class="form-control"
+               readonly>
+    </div>
+    <div>
+        <label for="content" th:text="#{label.board.content}"></label>
+        <input type="text" th:field="${board.content}" class="form-control"
+               readonly>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    th:onclick="|location.href='@{|/boards/editBoard/${board.id}|}'|" type="button"
+                    th:text="#{page.updateBoard}">
+            </button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    th:onclick="|location.href='@{|/boards/deleteBoard/${board.id}|}'|" type="button"
+                    th:text="#{page.deleteBoard}">
+            </button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='/boards'" type="button" th:text="#{page.toBoards}">
+            </button>
+        </div>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>

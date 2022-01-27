@@ -2,10 +2,11 @@ package com.yongin.whichSunday.board.service.impl;
 
 import com.yongin.whichSunday.board.service.BoardService;
 import com.yongin.whichSunday.board.vo.BoardVO;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -17,13 +18,14 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public BoardVO save(BoardVO boardVO) {
         boardVO.setId(++sequence);
+        boardVO.setDate(LocalDate.now().toString());
         store.put(boardVO.getId(), boardVO);
         return boardVO;
     }
 
     @Override
-    public Optional<BoardVO> findById(long id) {
-        return store.values().stream().filter(boardVO -> boardVO.getId().equals(id)).findAny();
+    public BoardVO findById(long id) {
+        return store.get(id);
     }
 
     @Override
@@ -32,13 +34,15 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void update(long id) {
-
+    public void update(long id, BoardVO board) {
+        BoardVO byIdBoard = findById(id);
+        byIdBoard.setTitle(board.getTitle());
+        byIdBoard.setContent(board.getContent());
     }
 
     @Override
     public void delete(long id) {
-
+        store.remove(id);
     }
 
     @PostConstruct
