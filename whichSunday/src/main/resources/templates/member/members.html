@@ -31,7 +31,7 @@
             <tbody>
             <tr th:each="member:${list}">
                 <td><a th:href="@{|/member/${member.id}|}" th:text="${member.id}"></a></td>
-                <td><a th:href="@{|/member}/" th:text="${member.name}"></a></td>
+                <td><a th:href="@{|/member/${member.id}|}" th:text="${member.name}"></a></td>
                 <td th:text="${member.age}"><td>
                 <td th:text="${member.sex}"></td>
                 <td th:text="${member.address}"></td>
