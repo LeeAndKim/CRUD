@@ -3,6 +3,7 @@ package com.yongin.whichSunday.member.service;
 import com.yongin.whichSunday.member.vo.MemberVO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberService {
 
