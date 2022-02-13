@@ -35,6 +35,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberVO update(Long id, MemberVO member) {
         MemberVO byMemberId = findById(id);
+        byMemberId.setName(member.getName());
         byMemberId.setAge(member.getAge());
         byMemberId.setAddress(member.getAddress());
         byMemberId.setSex(member.getSex());

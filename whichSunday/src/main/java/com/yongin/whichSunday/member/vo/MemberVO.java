@@ -2,12 +2,19 @@ package com.yongin.whichSunday.member.vo;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+
 @Data
 public class MemberVO {
     private Long id;
+
+    //@NotEmpty
     private String loginId;
+    //@NotEmpty
     private String password;
+    @NotEmpty
     private String name;
+
     private int age;
     private String sex;
     private String address;

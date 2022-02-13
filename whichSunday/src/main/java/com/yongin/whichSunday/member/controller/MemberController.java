@@ -3,17 +3,23 @@ package com.yongin.whichSunday.member.controller;
 import com.yongin.whichSunday.member.service.MemberService;
 import com.yongin.whichSunday.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
@@ -35,11 +41,22 @@ public class MemberController {
         return "member/member";
     }
 
-    @PostMapping("/updateInfo")
-    public String updateMemberInfo(Long id, MemberVO memberVO) {
-        MemberVO update = memberService.update(id, memberVO);
-        memberService.save(update);
+    @GetMapping("/updateInfo/{memberId}")
+    public String updateMemberForm(@PathVariable Long memberId, Model model) {
+        MemberVO memberInfo = memberService.findById(memberId);
+        model.addAttribute("member", memberInfo);
         return "member/updateInfo";
+    }
+
+    @PostMapping("/updateInfo/{memberId}")
+    public String updateMemberInfo(@PathVariable(name = "memberId") Long id, @Validated @ModelAttribute(name = "member") MemberVO memberVO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            log.info("bindingResult={} memberId={}", bindingResult, id);
+            return "member/updateInfo";
+        }
+        MemberVO update = memberService.update(id, memberVO);
+        redirectAttributes.addAttribute("memberId", id);
+        return "redirect:/member/{memberId}";
     }
 
     @PostMapping("/delete")
