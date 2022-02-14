@@ -1,5 +1,6 @@
 package com.yongin.whichSunday.member.service.impl;
 
+import com.yongin.whichSunday.common.login.form.LoginForm;
 import com.yongin.whichSunday.member.service.MemberService;
 import com.yongin.whichSunday.member.vo.MemberVO;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,12 @@ public class MemberServiceImpl implements MemberService {
         store.remove(id);
     }
 
+    @Override
+    public MemberVO checkLogin(LoginForm loginForm) {
+        Optional<MemberVO> checkedMember = findAll().stream().filter(memberVO -> loginForm.getLoginId().equals(memberVO.getLoginId()) && loginForm.getPassword().equals(memberVO.getPassword())).findAny();
+        return checkedMember.orElse(null);
+    }
+
     @PostConstruct
     void init() {
         MemberVO member1 = new MemberVO("홍길동1",11,"male", "yongin");
@@ -58,4 +65,5 @@ public class MemberServiceImpl implements MemberService {
         save(member2);
         save(member3);
     }
+
 }

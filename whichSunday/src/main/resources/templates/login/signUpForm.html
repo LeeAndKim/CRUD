@@ -22,18 +22,36 @@
     <h4 class="mb-3">회원 정보 입력</h4>
     <form th:action="@{/signUp}" th:object="${memberVO}" th:method="post">
         <label for="loginId">로그인 ID</label>
-        <input type="text" th:field="*{loginId}" class="form-control">
+        <input type="text" th:field="*{loginId}" th:errorclass="field-error" class="form-control">
+        <div class="field-error" th:errors="*{loginId}">
+                로그인 ID에러
+        </div>
         <label for="password">비밀번호</label>
         <input type="password" th:field="*{password}"
-               class="form-control">
+               th:errorclass="field-error" class="form-control">
+        <div class="field-error" th:errors="*{password}">
+            로그인 비밀번호 에러
+        </div>
         <label for="name">이름</label>
-        <input type="text" th:field="*{name}" class="form-control">
+        <input type="text" th:field="*{name}" th:errorclass="field-error" class="form-control">
+        <div class="field-error" th:errors="*{name}">
+            로그인 이름 에러
+        </div>
         <label for="age">나이</label>
-        <input type="text" th:field="*{age}" class="form-control">
+        <input type="text" th:field="*{age}" th:errorclass="field-error" class="form-control">
+        <div class="field-error" th:errors="*{age}">
+            로그인 나이 에러
+        </div>
         <label for="sex">성별</label>
-        <input type="text" th:field="*{sex}" class="form-control">
+        <input type="text" th:field="*{sex}" th:errorclass="field-error" class="form-control">
+        <div class="field-error" th:errors="*{sex}">
+            로그인 성별 에러
+        </div>
         <label for="address">주소</label>
-        <input type="text" th:field="*{address}" class="form-control">
+        <input type="text" th:field="*{address}" th:errorclass="field-error" class="form-control">
+        <div class="field-error" th:errors="*{address}">
+            로그인 주소 에러
+        </div>
         <hr class="my-4">
         <div class="row">
             <div class="col">

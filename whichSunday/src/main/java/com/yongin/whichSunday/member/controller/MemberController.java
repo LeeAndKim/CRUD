@@ -1,10 +1,10 @@
 package com.yongin.whichSunday.member.controller;
 
+import com.yongin.whichSunday.member.form.SignUpForm;
 import com.yongin.whichSunday.member.service.MemberService;
 import com.yongin.whichSunday.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +23,35 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
+
+
+    @GetMapping("/signUp")
+    public String signUpForm(MemberVO memberVO) {
+        return "login/signUpForm";
+    }
+
+    @PostMapping("/signUp")
+    public String signUp(@Validated @ModelAttribute(name = "memberVO") SignUpForm signUpForm, BindingResult bindingResult) {
+
+        System.out.println("signUpForm = " + signUpForm);
+
+        if (bindingResult.hasErrors()) {
+            log.info("bindingResult ={}", bindingResult);
+            return "login/signUpForm";
+        }
+
+        MemberVO memberVO = new MemberVO();
+        memberVO.setLoginId(signUpForm.getLoginId());
+        memberVO.setPassword(signUpForm.getPassword());
+        memberVO.setName(signUpForm.getName());
+        memberVO.setAge(signUpForm.getAge());
+        memberVO.setSex(signUpForm.getSex());
+        memberVO.setAddress(signUpForm.getAddress());
+
+        memberService.save(memberVO);
+
+        return "redirect:/login";
+    }
 
     @GetMapping("/members")
     public String memberInfo(Model model) {

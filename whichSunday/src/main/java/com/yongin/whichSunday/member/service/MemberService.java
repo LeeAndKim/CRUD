@@ -1,5 +1,6 @@
 package com.yongin.whichSunday.member.service;
 
+import com.yongin.whichSunday.common.login.form.LoginForm;
 import com.yongin.whichSunday.member.vo.MemberVO;
 
 import java.util.List;
@@ -16,5 +17,7 @@ public interface MemberService {
     MemberVO update(Long id, MemberVO memberVO);
 
     void delete(Long id);
+
+    MemberVO checkLogin(LoginForm member);
 
 }
