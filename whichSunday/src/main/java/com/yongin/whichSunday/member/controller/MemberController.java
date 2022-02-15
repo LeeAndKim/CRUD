@@ -88,8 +88,14 @@ public class MemberController {
         return "redirect:/member/{memberId}";
     }
 
+    @GetMapping("/delete/{memberId}")
+    public String deleteMemberForm(@PathVariable(name = "memberId") Long id, BindingResult bindingResult) {
+
+    }
+
     @PostMapping("/delete/{memberId}")
-    public String deleteMemberInfo(@PathVariable(name = "memberId") long id) {
+    public String deleteMemberInfo(@PathVariable(name = "memberId") Long id) {
+
         memberService.delete(id);
         return "redirect:/members";
     }

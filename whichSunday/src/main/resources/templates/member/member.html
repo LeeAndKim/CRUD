@@ -46,11 +46,13 @@
                     th:onclick="|location.href='@{|/updateInfo/${member.id}|}'|" type="button">수정
             </button>
         </div>
-        <div class="col">
-            <button class="w-100 btn btn-primary btn-lg"
-                   th:onclick="|location.href='@{|/delete/${member.id}|}'|" type="button">삭제
-            </button>
-        </div>
+        <form th:action>
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg"
+                        th:onclick="|location.href='@{|/delete/${member.id}|}'|" type="button">삭제
+                </button>
+            </div>
+        </form>
         <div class="col">
             <button class="w-100 btn btn-secondary btn-lg"
 
