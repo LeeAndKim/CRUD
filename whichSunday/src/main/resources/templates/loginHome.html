@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>which sunday</h2>
+    </div>
+    <div class="row">
+        <div class="col-7">
+            <h5 class="mb-3" th:text="|로그인 : ${member.name} 님 환영합니다.|"></h5>
+        </div>
+        <div class="col-5">
+            <button class="w-50 btn btn-dark btn-xm "
+                    onclick="location.href='/logout'" type="button">로그아웃
+            </button>
+        </div>
+    </div>
+
+    <hr class="my-4">
+    <ul>
+        <Li class="h5"><a href="/boards">이희원-게시판</a></Li>
+        <li class="h5"><a href="/members">김영곤-회원관리</a></li>
+    </ul>
+</div>
+</body>
+</html>
