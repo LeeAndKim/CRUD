@@ -20,7 +20,7 @@
         <h2 th:text="#{page.addBoard}"></h2>
     </div>
     <h4 class="mb-3" th:text="#{page.putBoard}"></h4>
-    <form th:action="@{/boards/addBoard}" th:object="${board}" method="post">
+    <form th:action="@{/boards/addBoard}" th:object="${board}" method="post" enctype="multipart/form-data">
         <div>
             <label for="title" th:text="#{label.board.title}"></label>
             <input type="text" th:field="${board.title}" th:errorclass="field-error" class="form-control"
@@ -36,6 +36,10 @@
             <div class="field-error" th:errors="*{content}">
                 내용에러
             </div>
+        </div>
+        <div>
+            <label for="attachFile" th:text="파일"></label>
+            <input type="file" th:field="*{attachFile}" class="form-control">
         </div>
         <hr class="my-4">
         <div class="row">

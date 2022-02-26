@@ -1,6 +1,7 @@
 package com.yongin.whichSunday.board.vo;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -9,12 +10,10 @@ import javax.validation.constraints.NotEmpty;
 public class BoardVO {
 
     private Long id;
-
-    @NotEmpty
     private String title;
-    @NotEmpty
     private String content;
     private String date;
+    private UploadFile attachFile;
 
     public BoardVO() {
     }

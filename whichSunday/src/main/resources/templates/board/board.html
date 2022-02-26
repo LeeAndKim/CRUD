@@ -29,6 +29,10 @@
         <input type="text" th:field="${board.content}" class="form-control"
                readonly>
     </div>
+    <div>
+        <label for="attachFile" th:text="파일"></label>
+        <a th:href="@{|/boards/attach/${board.id}|}" th:if="${board.getAttachFile()}" th:text="${board.getAttachFile().getUploadFileName()}" class="form-control"></a>
+    </div>
     <hr class="my-4">
     <div class="row">
         <div class="col">
