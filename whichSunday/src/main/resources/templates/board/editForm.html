@@ -20,7 +20,7 @@
         <h2 th:text="#{page.addBoard}"></h2>
     </div>
     <h4 class="mb-3" th:text="#{page.putBoard}"></h4>
-    <form th:action="@{|/boards/editBoard/${board.id}|}" th:object="${board}" th:method="post">
+    <form th:action="@{|/boards/editBoard/${board.id}|}" th:object="${board}" enctype="multipart/form-data" th:method="post">
         <div>
             <label for="title" th:text="#{label.board.title}"></label>
             <input type="text" th:field="${board.title}" class="form-control" th:errorclass="field-error"

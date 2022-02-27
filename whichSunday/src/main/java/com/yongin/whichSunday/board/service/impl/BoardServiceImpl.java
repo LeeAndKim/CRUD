@@ -37,6 +37,7 @@ public class BoardServiceImpl implements BoardService {
         BoardVO byIdBoard = findById(id);
         byIdBoard.setTitle(board.getTitle());
         byIdBoard.setContent(board.getContent());
+        byIdBoard.setAttachFile(board.getAttachFile());
     }
 
     @Override

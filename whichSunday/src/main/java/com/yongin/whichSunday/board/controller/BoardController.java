@@ -81,13 +81,22 @@ public class BoardController {
     }
 
     @PostMapping("/editBoard/{boardId}")
-    public String editBoard(@PathVariable long boardId, @Validated @ModelAttribute(name = "board") BoardVO board, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String editBoard(@PathVariable long boardId, @Validated @ModelAttribute(name = "board") BoardForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
+
+        System.out.println("form = " + form);
 
         if (bindingResult.hasErrors()) {
             log.info("bindingResult={}", bindingResult);
 
             return "/board/editForm";
         }
+
+        UploadFile uploadFile = fileStore.storeFile(form.getAttachFile());
+
+        BoardVO board = new BoardVO();
+        board.setTitle(form.getTitle());
+        board.setContent(form.getContent());
+        board.setAttachFile(uploadFile);
 
         boardService.update(boardId, board);
         redirectAttributes.addAttribute("boardId", boardId);
